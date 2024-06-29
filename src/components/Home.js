@@ -19,42 +19,17 @@ const Home = () => {
         fetchNotifications();
     }, []);
 
-    const express = require('express');
-    const axios = require('axios');
-    const app = express();
-
-    // Middleware to set CORS headers
-    app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://santhanamatha.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-    });
-
-    // Route to fetch notifications
-    app.get('/api/notifications', async (req, res) => {
-    try {
-        // Make request to external API
+    const fetchNotifications = async () => {
+        try {
         const response = await axios.get('https://santhanamatha-app.vercel.app/api/notifications/');
-        
-        // Assuming response.data has the structure you expect
-        res.json({
-        last_events: response.data.last_events,
-        last_two_videos: response.data.last_two_videos,
-        last_two_events: response.data.last_two_events,
-        last_events: response.data.last_events
-        });
-    } catch (error) {
+        setNotifications(response.data.last_events);
+        setLastTwoVideos(response.data.last_two_videos);
+        setLastTwoEvents(response.data.last_two_events);
+        setLastEvents(response.data.last_events);
+        } catch (error) {
         console.error('Error fetching notifications:', error);
-        res.status(500).json({ error: 'Failed to fetch notifications' });
-    }
-    });
-
-    // Start the server
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-    });
+        }
+    };
 
     const getYoutubeVideoId = (youtubeLink) => {
         const match = youtubeLink.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([^#\&\?]*).*/);
