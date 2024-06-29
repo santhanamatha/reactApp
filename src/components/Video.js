@@ -18,7 +18,7 @@ const Video = () => {
     const fetchVideos = async () => {
         try {
             const response = await fetch(
-                `http://127.0.0.1:8000/api/videos/?page=${currentPage}&duration=${duration}`
+                `https://santhanamatha-app.vercel.app/api/videos/?page=${currentPage}&duration=${duration}`
             );
             if (!response.ok) {
                 throw new Error('Failed to fetch videos');

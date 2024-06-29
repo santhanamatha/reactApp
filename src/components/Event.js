@@ -19,7 +19,7 @@ const Event = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/events/?duration=${duration}&page=${currentPage}`);
+            const response = await axios.get(`https://santhanamatha-app.vercel.app/api/events/?duration=${duration}&page=${currentPage}`);
             setEvents(response.data.results);
             setHasNext(response.data.next !== null);
             setHasPrevious(response.data.previous !== null);
@@ -65,9 +65,9 @@ const Event = () => {
                 {events.length > 0 ? (
                     events.map(event => (
                         <div className="video-item" key={event.id}>
-                            <img src={`http://localhost:8000${event.image}`} style={{ width: '400px', height: '460px' }} alt="Event" />
+                            <img src={`https://santhanamatha-app.vercel.app${event.image}`} style={{ width: '400px', height: '460px' }} alt="Event" />
                             <br />
-                            <a style={{ borderRadius: '13px', background: '#9e052b' }} target="_blank" rel="noopener noreferrer" href={`http://localhost:8000${event.image}`} className="btn btn-primary mt-2">Download</a>
+                            <a style={{ borderRadius: '13px', background: '#9e052b' }} target="_blank" rel="noopener noreferrer" href={`https://santhanamatha-app.vercel.app${event.image}`} className="btn btn-primary mt-2">Download</a>
                             <a style={{ textDecoration: 'none', fontSize: 'large' }}>{event.discription}</a>
                         </div>
                     ))

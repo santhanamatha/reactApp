@@ -21,7 +21,7 @@ const Home = () => {
 
     const fetchNotifications = async () => {
         try {
-        const response = await axios.get('http://localhost:8000/api/notifications/');
+        const response = await axios.get('https://santhanamatha-app.vercel.app/api/notifications/');
         setNotifications(response.data.last_events);
         setLastTwoVideos(response.data.last_two_videos);
         setLastTwoEvents(response.data.last_two_events);
@@ -111,9 +111,9 @@ const Home = () => {
                 {lastTwoEvents.length > 0 ? (
                 lastTwoEvents.map(event => (
                     <div key={event.id} className="video-item">
-                    <img src={`http://localhost:8000${event.image}`} style={{ width: '400px', height: '460px' }} alt="Event" />
+                    <img src={`https://santhanamatha-app.vercel.app${event.image}`} style={{ width: '400px', height: '460px' }} alt="Event" />
                     <br />
-                    <a style={{ borderRadius: '13px', background: '#9e052b' }} href={`http://localhost:8000${event.image}`} download="event_image.jpg" className="btn btn-primary mt-2">Download</a>
+                    <a style={{ borderRadius: '13px', background: '#9e052b' }} href={`https://santhanamatha-app.vercel.app${event.image}`} download="event_image.jpg" className="btn btn-primary mt-2">Download</a>
                     <p style={{ textDecoration: 'none', fontSize: 'large' }}>{event.discription}</p>
                     </div>
                 ))
